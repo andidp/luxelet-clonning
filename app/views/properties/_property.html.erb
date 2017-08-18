@@ -1,0 +1,21 @@
+<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+<div class="card" >
+
+<!-- Heading -->
+<div class="card-block">
+<h4 class="card-title"><%= property.name %></h4>
+<h6 class="card-subtitle text-muted"><%= "#{number_to_currency(property.cost, unit: property.currency, precision: 0)}" %></h6>
+</div>
+
+<!-- Image -->
+<%= image_tag property.property_image.url(:medium) %>
+
+<!-- Text Content -->
+<div class="card-block">
+<p class="card-text"><%= truncate(strip_tags(property.description), length: 200) %></p>
+<%= link_to property_path(property), class: 'card-link' do %><%= fa_icon "eye" %> Show<% end %>
+<%= link_to property_path(property), class: 'card-link', method: :delete do %><%= fa_icon "trash-o" %> Destroy<% end %>
+<%= link_to edit_property_path(property), class: 'card-link' do %><%= fa_icon "edit" %> Edit<% end %>
+</div>
+</div>
+</div>

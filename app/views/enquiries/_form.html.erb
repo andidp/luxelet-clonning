@@ -1,0 +1,57 @@
+<%= form_with(model: enquiry, local: true) do |form| %>
+  <% if enquiry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(enquiry.errors.count, "error") %> prohibited this enquiry from being saved:</h2>
+
+      <ul>
+      <% enquiry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.collection_select(:property_id, current_user.properties, :id, :name , {}, {class: 'form-control'}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkin %>
+    <%= form.text_field :checkin, id: :enquiry_checkin, class: "datepicker form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkout %>
+    <%= form.text_field :checkout, id: :enquiry_checkout, class: "datepicker form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_adults %>
+    <%= form.number_field :number_of_adults, id: :enquiry_number_of_adults %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_children %>
+    <%= form.number_field :number_of_children, id: :enquiry_number_of_children %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_infants %>
+    <%= form.number_field :number_of_infants, id: :enquiry_number_of_infants %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id, "Contact / Customer" %>
+    <%#= form.text_field :user_id, id: :enquiry_user_id %>
+    <%= form.fields_for :customer do |us| %>
+      <%= us.hidden_field :id%>
+      <%= us.text_field :full_name, placeholder: "Full Name" %>
+      <%= us.text_field :email, placeholder: "Email" %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

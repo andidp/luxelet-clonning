@@ -1,0 +1,78 @@
+<%= tinymce %>
+<%= form_with(model: property, local: true, html: { multipart: true }) do |form| %>
+  <% if property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :name , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.text_field :name, id: :property_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :description , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.text_area :description, id: :property_description, class: 'form-control tinymce' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :searchable , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.check_box :searchable, id: :property_searchable, class: 'form-check' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :cost , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.number_field :cost, id: :property_cost, class: 'form-control' ,step: :any%>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :tax , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.number_field :tax, id: :property_tax, class: 'form-control' , step: :any%>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :currency , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.select(:currency, options_for_select(["USD","IDR"]), {}, {class: 'form-control'}) %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :user_id , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.collection_select(:user_id, Partner.all, :id, :full_name , {}, {class: 'form-control'}) %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :property_image , class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.file_field :property_image %>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <div class="col-2"></div>
+    <div class="col-10 actions">
+      <%= form.submit "Submit", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

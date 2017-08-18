@@ -1,0 +1,10 @@
+<div class="row message">
+  <div class="col-md-2"><%= truncate(enquiry.customer.to_s, length: 20) %> <span class="badge badge-default">Enquiry</span></div>
+  <div class="col-md-4"><%= enquiry.checkin.to_date %> to <%= enquiry.checkout.to_date %><br/><%= enquiry.property %></div>
+  <div class="col-md-3"><%= "#{enquiry.currency} #{number_to_currency(enquiry.total_cost)}" %></div>
+  <div class="col-md-2">
+    <%= time_ago_in_words(enquiry.messages.last.created_at) unless enquiry.messages.last.created_at.blank? %>
+  
+  </div>
+  <div class="col-md-1"><span class="badge badge-default"><%= enquiry.messages.count %></span></div>
+</div>

@@ -1,0 +1,86 @@
+  <div class="row dashboard-wrapper">
+
+    <div class="col-sm-3 blog-sidebar">
+      <div class="sidebar-module">
+        <h4>Partner</h4>
+        <span class="c_user"><strong><%= current_user %></strong></span>
+        <ol class="list-unstyled">
+          <li>
+            <%= link_to "Create Booking", new_enquiry_path %>
+          </li>
+        </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>Exchange Rate</h4>
+        <p>USD Rate for 1 Aud <strong>0.781075</strong></p>
+      </div>
+      <div class="sidebar-module">
+        <h4>Guests Activities</h4>
+        <ol class="list-unstyled">
+          <li><a href="#"><%= Customer.count %> Current guests</a></li>
+          <li><a href="#">0 Arrivals in next 24 hours</a></li>
+          <li><a href="#">0 Departures in next 24 hours</a></li>
+        </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>Month To Date</h4>
+        <ol class="list-unstyled">
+          <li><a href="#"><%= current_user.enquiries.count %> enquiries</a></li>
+          <li><a href="#">0 on holds</a></li>
+          <li><a href="#">0 confirmed</a></li>
+          <li><a href="#">0 completed</a></li>
+        </ol>
+        <ol class="list-unstyled">
+          <li><a href="#"><u>View All Requests</u></a></li>
+        </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>Payment Due</h4>
+        <ol class="list-unstyled">
+          <li><a href="#"><u>View All Payment Due</u></a></li>
+        </ol>
+      </div>
+    </div><!-- /.blog-sidebar -->
+
+    <div class="col-sm-8 offset-sm-1 blog-main">
+      <nav class="navbar navbar-light bg-faded rounded navbar-toggleable-md">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Inbox</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reports</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/properties">Properties</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Admin</a>
+        </li>
+
+      </nav>
+
+      <div class="row dashboard-wrapper">
+        <div class="col-md-12">
+          <% @messages.each do |mess| %>
+            <%= render mess %>
+          <% end %>
+
+          <div class="row float-right">
+            <a class="btn btn-outline-primary " href="#">View All Enquiries</a>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div><!-- /.blog-main -->
+
+
+
+  </div><!-- /.row -->

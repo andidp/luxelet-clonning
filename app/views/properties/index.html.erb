@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Properties</h1>
+
+<div class="row">
+
+    <% @properties.each do |property| %>
+      <%= render property %>
+    <% end %>
+</div>
+
+<br>
+
+<%= link_to new_property_path do %><%= fa_icon "plus-circle" %>  New Property <% end %>

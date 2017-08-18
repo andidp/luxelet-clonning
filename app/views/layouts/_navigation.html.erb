@@ -1,0 +1,18 @@
+<%# navigation styled for Bootstrap 4.0 %>
+<nav class="navbar navbar-toggleable-md navbar-inverse  bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="user-links pull-right">
+    <%= link_to (current_user || "Partner"), root_url, class: "navbar-brand" %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-brand" %>
+  </div>
+
+  <% if user_signed_in? %>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav ml-auto ">
+      <%= render 'layouts/navigation_links' %>
+    </ul>
+  </div>
+  <% end %>
+</nav>
